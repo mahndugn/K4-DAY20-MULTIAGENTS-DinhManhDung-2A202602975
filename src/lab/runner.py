@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from tempfile import TemporaryDirectory
 from time import perf_counter
 import re
+import os
 
 from langchain_core.callbacks import UsageMetadataCallbackHandler
 from .agent import build_agent
@@ -78,7 +79,10 @@ def run_task(task_id: str, condition: str, results_dir="results", model=None, re
     out = Path(results_dir) / condition / task_id
     out.mkdir(parents=True, exist_ok=True)
     record = {"task": task_id, "condition": condition, "role": task.role,
-              "error": None, "timestamp": datetime.now(timezone.utc).isoformat()}
+              "error": None, "timestamp": datetime.now(timezone.utc).isoformat(),
+              "model": os.getenv("LAB_MODEL") if model is None else getattr(model, "model", type(model).__name__),
+              "temperature_requested": float(os.getenv("LAB_TEMPERATURE", "0")) if model is None else getattr(model, "temperature", None),
+              "recursion_limit": recursion_limit}
     usage = UsageMetadataCallbackHandler()
     messages = []
     with TemporaryDirectory(prefix="lab-sandbox-") as tmp:

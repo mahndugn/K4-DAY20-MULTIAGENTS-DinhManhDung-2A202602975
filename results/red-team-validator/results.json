@@ -1,0 +1,43 @@
+{
+  "experiment": "6c offline validator audit",
+  "llm_calls": 0,
+  "api_tokens": 0,
+  "cases": [
+    {
+      "case": "valid_control",
+      "accepted": true,
+      "issues": [],
+      "adversarial": false
+    },
+    {
+      "case": "path_traversal",
+      "accepted": false,
+      "issues": [
+        "invalid name"
+      ],
+      "adversarial": true
+    },
+    {
+      "case": "literal_eval_identifier",
+      "accepted": false,
+      "issues": [
+        "mentions evaluation material: code-eval"
+      ],
+      "adversarial": true
+    },
+    {
+      "case": "spaced_eval_identifier",
+      "accepted": true,
+      "issues": [],
+      "adversarial": true
+    },
+    {
+      "case": "zero_width_eval_identifier",
+      "accepted": true,
+      "issues": [],
+      "adversarial": true
+    }
+  ],
+  "adversarial_outputs_accepted": 2,
+  "adversarial_outputs_total": 4
+}

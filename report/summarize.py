@@ -27,7 +27,7 @@ def main():
             "skill_reads": [r["skills_read"] for r in records],
         }
     dev = {}
-    for path in sorted(Path("results/skills-auto-dev").glob("*/run.json")):
+    for path in sorted(Path("results/repeat-learning/skills-auto").glob("*/run.json")):
         r = json.loads(path.read_text(encoding="utf-8"))
         final = next((x for x in runs if x["condition"] == "skills-auto" and x["task"] == r["task"]), None)
         dev[r["task"]] = {"dev_score": r["score"], "dev_tokens": r["tokens"]["total"],

@@ -1,0 +1,66 @@
+{
+  "task": "data-learn",
+  "condition": "baseline",
+  "role": "learn",
+  "error": "GoogleAPIError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+  "timestamp": "2026-10-06T10:23:35.678487+00:00",
+  "model": "google_genai:gemini-3.7-flash",
+  "recursion_limit": 100,
+  "skills_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "seconds": 140.5,
+  "tokens": {
+    "input": 47159,
+    "output": 1414,
+    "total": 48573
+  },
+  "tool_calls": 12,
+  "subagent_calls": 0,
+  "skills_read": 0,
+  "skills_modified": false,
+  "final_message": "S-1022 Count: 2\n   {'order_id': 'S-1022', 'date': '09/02/2024', 'region': 'NORTH', 'amount': '379.22'}\n   {'order_id': 'S-1022', 'date': '09/02/2024', 'region': 'NORTH', 'amount': '379.22'}\n   Identical? True\nS-1053 Count: 2\n   {'order_id': 'S-1053', 'date': '09/02/2024', 'region': 'West', 'amount': '883.27'}\n   {'order_id': 'S-1053', 'date': '09/02/2024', 'region': 'West', 'amount': '883.27'}\n   Identical? True\nS-1072 Count: 2\n   {'order_id': 'S-1072', 'date': '2024-02-22', 'region': ' East', 'amount': '819.07'}\n   {'order_id': 'S-1072', 'date': '2024-02-22', 'region': ' East', 'amount': '819.07'}\n   Identical? True\nS-1087 Count: 2\n   {'order_id': 'S-1087', 'date': '2024-02-28', 'region': 'East ', 'amount': '56.53'}\n   {'order_id': 'S-1087', 'date': '2024-02-28', 'region': 'East ', 'amount': '56.53'}\n   Identical? True\nS-1021 Count: 2\n   {'order_id': 'S-1021', 'date': '2024-02-17', 'region': ' South', 'amount': '784.21'}\n   {'order_id': 'S-1021', 'date': '2024-02-17', 'region': ' South', 'amount': '784.21'}\n   Identical? True\nS-1024 Count: 2\n   {'order_id': 'S-1024', 'date': '14/04/2024', 'region': 'west', 'amount': '363.91'}\n   {'order_id': 'S-1024', 'date': '14/04/2024', 'region': 'west', 'amount': '363.91'}\n   Identical? True\nS-1009 Count: 2\n   {'order_id': 'S-1009', 'date': '2024-05-23', 'region': 'East ', 'amount': '615.00'}\n   {'order_id': 'S-1009', 'date': '2024-05-23', 'region': 'East ', 'amount': '615.00'}\n   Identical? True\n\n[Command succeeded with exit code 0]",
+  "score": 0.0,
+  "passed": 0,
+  "total": 8,
+  "checks": [
+    {
+      "name": "north_q1_revenue",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "north_q1_orders",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "top_region",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "missing_amount_orders",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "duplicate_rows_removed",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "rule_money_in_cents",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "rule_meta_block",
+      "passed": false,
+      "detail": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/lab-sandbox-dpadqlgj/workspace/answer.json'"
+    },
+    {
+      "name": "rule_clean_csv",
+      "passed": false,
+      "detail": "RULE: write workspace/clean.csv with the header order_id,timestamp_utc,region,amount_cents; one row per distinct order with a known amount; timestamp_utc as YYYY-MM-DDTHH:MM:SSZ (UTC); region in canonical spelling (North, South, East, West); amount in integer cents."
+    }
+  ]
+}

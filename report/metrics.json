@@ -1,0 +1,431 @@
+{
+  "groups": {
+    "baseline/eval": {
+      "score": 0.567003367003367,
+      "tokens": 75472.66666666667,
+      "seconds": 59.36666666666667,
+      "technical": [
+        17,
+        18
+      ],
+      "rules": [
+        0,
+        12
+      ],
+      "subagent_calls": 0,
+      "skill_reads": [
+        0,
+        0,
+        0
+      ]
+    },
+    "baseline/learn": {
+      "score": 0.6638888888888889,
+      "tokens": 180166.66666666666,
+      "seconds": 110.3,
+      "technical": [
+        18,
+        18
+      ],
+      "rules": [
+        0,
+        9
+      ],
+      "subagent_calls": 0,
+      "skill_reads": [
+        0,
+        0,
+        0
+      ]
+    },
+    "skills-auto/eval": {
+      "score": 0.4929292929292929,
+      "tokens": 122305.66666666667,
+      "seconds": 56.53333333333333,
+      "technical": [
+        15,
+        18
+      ],
+      "rules": [
+        0,
+        12
+      ],
+      "subagent_calls": 0,
+      "skill_reads": [
+        0,
+        0,
+        0
+      ]
+    },
+    "skills-auto/learn": {
+      "score": 0.6638888888888889,
+      "tokens": 92883,
+      "seconds": 53.43333333333334,
+      "technical": [
+        18,
+        18
+      ],
+      "rules": [
+        0,
+        9
+      ],
+      "subagent_calls": 0,
+      "skill_reads": [
+        0,
+        1,
+        0
+      ]
+    },
+    "subagents/eval": {
+      "score": 0.5973063973063973,
+      "tokens": 76016,
+      "seconds": 45.5,
+      "technical": [
+        18,
+        18
+      ],
+      "rules": [
+        0,
+        12
+      ],
+      "subagent_calls": 1,
+      "skill_reads": [
+        0,
+        0,
+        0
+      ]
+    },
+    "subagents/learn": {
+      "score": 0.6638888888888889,
+      "tokens": 241441,
+      "seconds": 94.9,
+      "technical": [
+        18,
+        18
+      ],
+      "rules": [
+        0,
+        9
+      ],
+      "subagent_calls": 0,
+      "skill_reads": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "dev_comparison": {
+    "code-learn": {
+      "dev_score": 0.7,
+      "dev_tokens": 121703,
+      "dev_skills_read": 0,
+      "final_score": 0.7,
+      "delta": 0.0
+    },
+    "data-learn": {
+      "dev_score": 0.625,
+      "dev_tokens": 104313,
+      "dev_skills_read": 1,
+      "final_score": 0.625,
+      "delta": 0.0
+    },
+    "logs-learn": {
+      "dev_score": 0.6666666666666666,
+      "dev_tokens": 61653,
+      "dev_skills_read": 0,
+      "final_score": 0.6666666666666666,
+      "delta": 0.0
+    }
+  },
+  "runs": [
+    {
+      "task": "code-eval",
+      "condition": "baseline",
+      "passed": 6,
+      "total": 11,
+      "tokens": {
+        "input": 108778,
+        "output": 1637,
+        "total": 110415
+      },
+      "seconds": 80.9,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "code-learn",
+      "condition": "baseline",
+      "passed": 7,
+      "total": 10,
+      "tokens": {
+        "input": 128886,
+        "output": 1763,
+        "total": 130649
+      },
+      "seconds": 78.1,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-eval",
+      "condition": "baseline",
+      "passed": 5,
+      "total": 9,
+      "tokens": {
+        "input": 70180,
+        "output": 1763,
+        "total": 71943
+      },
+      "seconds": 63.0,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-learn",
+      "condition": "baseline",
+      "passed": 5,
+      "total": 8,
+      "tokens": {
+        "input": 349708,
+        "output": 4117,
+        "total": 353825
+      },
+      "seconds": 224.2,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": "GraphRecursionError: Recursion limit of 100 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+      "skills_modified": false
+    },
+    {
+      "task": "logs-eval",
+      "condition": "baseline",
+      "passed": 6,
+      "total": 10,
+      "tokens": {
+        "input": 42928,
+        "output": 1132,
+        "total": 44060
+      },
+      "seconds": 34.2,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "logs-learn",
+      "condition": "baseline",
+      "passed": 6,
+      "total": 9,
+      "tokens": {
+        "input": 54789,
+        "output": 1237,
+        "total": 56026
+      },
+      "seconds": 28.6,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "code-eval",
+      "condition": "skills-auto",
+      "passed": 6,
+      "total": 11,
+      "tokens": {
+        "input": 193148,
+        "output": 2123,
+        "total": 195271
+      },
+      "seconds": 103.2,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "code-learn",
+      "condition": "skills-auto",
+      "passed": 7,
+      "total": 10,
+      "tokens": {
+        "input": 120532,
+        "output": 2012,
+        "total": 122544
+      },
+      "seconds": 69.4,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-eval",
+      "condition": "skills-auto",
+      "passed": 3,
+      "total": 9,
+      "tokens": {
+        "input": 121789,
+        "output": 1643,
+        "total": 123432
+      },
+      "seconds": 53.5,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-learn",
+      "condition": "skills-auto",
+      "passed": 5,
+      "total": 8,
+      "tokens": {
+        "input": 91609,
+        "output": 2843,
+        "total": 94452
+      },
+      "seconds": 46.2,
+      "subagent_calls": 0,
+      "skills_read": 1,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "logs-eval",
+      "condition": "skills-auto",
+      "passed": 6,
+      "total": 10,
+      "tokens": {
+        "input": 47224,
+        "output": 990,
+        "total": 48214
+      },
+      "seconds": 12.9,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "logs-learn",
+      "condition": "skills-auto",
+      "passed": 6,
+      "total": 9,
+      "tokens": {
+        "input": 60429,
+        "output": 1224,
+        "total": 61653
+      },
+      "seconds": 44.7,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "code-eval",
+      "condition": "subagents",
+      "passed": 7,
+      "total": 11,
+      "tokens": {
+        "input": 92208,
+        "output": 1258,
+        "total": 93466
+      },
+      "seconds": 39.8,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "code-learn",
+      "condition": "subagents",
+      "passed": 7,
+      "total": 10,
+      "tokens": {
+        "input": 148683,
+        "output": 2488,
+        "total": 151171
+      },
+      "seconds": 73.4,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-eval",
+      "condition": "subagents",
+      "passed": 5,
+      "total": 9,
+      "tokens": {
+        "input": 85556,
+        "output": 4013,
+        "total": 89569
+      },
+      "seconds": 66.1,
+      "subagent_calls": 1,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "data-learn",
+      "condition": "subagents",
+      "passed": 5,
+      "total": 8,
+      "tokens": {
+        "input": 511006,
+        "output": 5132,
+        "total": 516138
+      },
+      "seconds": 194.9,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": "GraphRecursionError: Recursion limit of 100 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+      "skills_modified": false
+    },
+    {
+      "task": "logs-eval",
+      "condition": "subagents",
+      "passed": 6,
+      "total": 10,
+      "tokens": {
+        "input": 44024,
+        "output": 989,
+        "total": 45013
+      },
+      "seconds": 30.6,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    },
+    {
+      "task": "logs-learn",
+      "condition": "subagents",
+      "passed": 6,
+      "total": 9,
+      "tokens": {
+        "input": 55822,
+        "output": 1192,
+        "total": 57014
+      },
+      "seconds": 16.4,
+      "subagent_calls": 0,
+      "skills_read": 0,
+      "error": null,
+      "skills_modified": false
+    }
+  ]
+}
