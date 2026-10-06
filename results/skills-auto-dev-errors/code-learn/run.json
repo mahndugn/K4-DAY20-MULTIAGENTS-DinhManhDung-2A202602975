@@ -1,0 +1,74 @@
+{
+  "task": "code-learn",
+  "condition": "skills-auto",
+  "role": "learn",
+  "error": "GraphRecursionError: Recursion limit of 60 reached without hitting a stop condition. You can increase the limit by setting the `recursion_limit` config key.\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+  "timestamp": "2026-10-06T09:35:03.058808+00:00",
+  "skills_sha256": "9b00c35ae0e60dfd21e04bf8b80249f5e5911b84ccfb68a198364854899df9f9",
+  "seconds": 92.5,
+  "tokens": {
+    "input": 200173,
+    "output": 2800,
+    "total": 202973
+  },
+  "tool_calls": 29,
+  "subagent_calls": 0,
+  "skills_read": 3,
+  "skills_modified": false,
+  "final_message": "============================= test session starts ==============================\nplatform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.6.0\nrootdir: /tmp/lab-sandbox-ev3dtgdy\nplugins: langsmith-0.14.4, anyio-4.15.1\ncollected 15 items\n\nworkspace/tests/test_additional.py .........                             [ 60%]\nworkspace/tests/test_report.py ......                                    [100%]\n\n============================== 15 passed in 0.03s ==============================\n\n[Command succeeded with exit code 0]",
+  "score": 0.9,
+  "passed": 9,
+  "total": 10,
+  "checks": [
+    {
+      "name": "visible_suite_passes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tests_not_modified",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "parse_price_all_formats",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "other_caller_fixed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "discount_rounds_half_up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "low_stock_follows_docstring",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "csv_quoting_follows_docstring",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "rule_type_hints",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "rule_regression_tests",
+      "passed": false,
+      "detail": "RULE: add tests/test_regressions.py with one test function per bug you fixed (at least 3); the file must pass."
+    },
+    {
+      "name": "rule_changelog",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Preserve frozen skill bytes when this Linux experiment is cloned on Windows.
+skills/auto/** text eol=lf

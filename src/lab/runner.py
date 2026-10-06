@@ -7,6 +7,13 @@ Chạy thật:   python -m lab.runner --condition baseline --tasks learn
 import argparse
 import json
 from pathlib import Path
+from datetime import datetime, timezone
+from tempfile import TemporaryDirectory
+from time import perf_counter
+import re
+
+from langchain_core.callbacks import UsageMetadataCallbackHandler
+from .agent import build_agent
 
 from langchain_core.messages import AIMessage, ToolMessage
 
@@ -65,7 +72,56 @@ def run_task(task_id: str, condition: str, results_dir="results", model=None, re
     Lỗi khi chạy tác tử KHÔNG được làm chương trình dừng: ghi vào `error` và vẫn chấm điểm.
     Sandbox là thư mục tạm NGOÀI kho mã nguồn và phải được xóa sau khi chạy.
     """
-    raise NotImplementedError("TODO 1: cài đặt run_task (xem guides/pseudocode/03_runner.md)")
+    cfg = CONDITIONS[condition]
+    task = get_task(task_id)
+    skills_dir = ROOT / cfg["skills_dir"] if cfg["skills_dir"] else None
+    out = Path(results_dir) / condition / task_id
+    out.mkdir(parents=True, exist_ok=True)
+    record = {"task": task_id, "condition": condition, "role": task.role,
+              "error": None, "timestamp": datetime.now(timezone.utc).isoformat()}
+    usage = UsageMetadataCallbackHandler()
+    messages = []
+    with TemporaryDirectory(prefix="lab-sandbox-") as tmp:
+        sandbox = Path(tmp)
+        prepare_sandbox(task, sandbox, skills_dir)
+        # Windows Git checkouts can use CRLF, while the supplied Python checkers
+        # embed hashes of the original LF files. Normalize only sandbox copies.
+        for path in (sandbox / "workspace").rglob("*.py"):
+            contents = path.read_bytes()
+            if b"\r\n" in contents:
+                path.write_bytes(contents.replace(b"\r\n", b"\n"))
+        before = hash_dir(sandbox / "skills")
+        record["skills_sha256"] = before
+        start = perf_counter()
+        try:
+            agent = build_agent(sandbox, mode=cfg["mode"], use_skills=skills_dir is not None, model=model)
+            for result in agent.stream(
+                {"messages": [{"role": "user", "content": task.instruction}]},
+                config={"callbacks": [usage], "recursion_limit": recursion_limit},
+                stream_mode="values",
+            ):
+                messages = result.get("messages", messages)
+        except Exception as exc:
+            record["error"] = f"{type(exc).__name__}: {exc}"
+        record["seconds"] = round(perf_counter() - start, 1)
+        record["tokens"] = {
+            key: sum(v.get(field, 0) for v in usage.usage_metadata.values())
+            for key, field in (("input", "input_tokens"), ("output", "output_tokens"), ("total", "total_tokens"))
+        }
+        calls = [tc for m in messages if isinstance(m, AIMessage) for tc in m.tool_calls]
+        names = set()
+        for tc in calls:
+            if tc["name"] == "read_file":
+                match = re.search(r"(?:^|/)skills/([^/]+)/", tc["args"].get("file_path", ""))
+                if match:
+                    names.add(match.group(1))
+        record.update(tool_calls=len(calls), subagent_calls=sum(tc["name"] == "task" for tc in calls),
+                      skills_read=len(names), skills_modified=hash_dir(sandbox / "skills") != before,
+                      final_message=messages[-1].content if messages else "")
+        record.update(grade(task, sandbox / "workspace"))
+        (out / "trace.md").write_text(render_trace(messages), encoding="utf-8")
+    (out / "run.json").write_text(json.dumps(record, indent=2, ensure_ascii=False), encoding="utf-8")
+    return record
 
 
 def main(argv=None):
